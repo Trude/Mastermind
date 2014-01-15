@@ -1,0 +1,13 @@
+extends layout
+
+block content
+	h1 Mastermind
+	div.solution
+		p * * * *
+	div.previousGuesses
+	div.currentGuess
+		form.guess
+			- for (var x = 0; x < 4; x++)
+				select
+					each color in  ['Red', 'Yellow', 'Green', 'Yellow']
+						option #{color}
