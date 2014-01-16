@@ -40,8 +40,35 @@ var findNumberOfCorrectGuesses = function(guess) {
 }
 
 var findNumberOfAlmostCorrectGuesses = function(guess) {
+	var guessCopy = copyMap(guess);
+	var fasitCopy = copyMap(fasit);
+
 	var almostCorrect = 0;
+	for(var colorGuess in guess) {
+		if(guessCopy[colorGuess] == fasitCopy[colorGuess]) {
+			delete guessCopy[colorGuess];
+			delete fasitCopy[colorGuess];
+		}
+	}
+
+	for(var colorGuess in guessCopy) {
+		for(var colorFasit in fasitCopy) {
+			if(colorGuess != colorFasit && guessCopy[colorGuess] == fasitCopy[colorFasit]) {
+				almostCorrect++;
+				delete fasitCopy[colorFasit];
+				break;
+			}
+		}
+	}
 	return almostCorrect;
+}
+
+var copyMap = function(map) {
+	var newMap = {};
+	for (var i in map) {
+ 		newMap[i] = map[i];
+ 	}
+ 	return newMap;
 }
 
 app.listen(3000);
