@@ -5,14 +5,14 @@ block content
 	div.solution
 		p * * * *
 	div.previousGuesses
-		ul
+		div.row
 			each guess in guesses
-				li=guess.guess.color0
-				li=guess.guess.color1
-				li=guess.guess.color2
-				li=guess.guess.color3
-				li=guess.correct
-				li=guess.almostCorrect
+				div.col-md-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color0}")
+				div.col-md-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color1}")
+				div.col-md-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color2}")
+				div.col-md-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color3}")
+				div.col-md-1=guess.correct
+				div.col-md-1=guess.almostCorrect
 	div.currentGuess
 		form(action='/', method='post')
 			- for (var x = 0; x < 4; x++)

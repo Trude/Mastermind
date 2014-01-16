@@ -10,6 +10,7 @@ app.set('views', path.join(__dirname, 'views'));
 // definer at vi bruker jade
 app.set('view engine', 'jade');
 app.use(express.bodyParser());
+app.use('/public', express.static(__dirname + '/public'));
 
 var guesses = [{guess: {color0: 'Red', color1: 'Green', color2: 'Green', color3: 'Yellow'}, correct:1, almostCorrect:1}];
 var fasit = {color0: 'Red', color1: 'Red', color2: 'Blue', color3: 'Green'};
