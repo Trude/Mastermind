@@ -11,16 +11,21 @@ app.set('view engine', 'jade');
 app.use(express.bodyParser());
 app.use('/public', express.static(__dirname + '/public'));
 
-var guesses = [{guess: {color0: 'Red', color1: 'Green', color2: 'Green', color3: 'Yellow'}, correct:1, almostCorrect:1}];
+var guesses = [];
 var fasit = {color0: 'Red', color1: 'Red', color2: 'Blue', color3: 'Green'};
 
 app.get('/', function(req, res) {
 	res.render('mastermind', {title: 'Mastermind', guesses: guesses});
 });
 
-app.post('/', function(req, res) {
+app.post('/guess', function(req, res) {
 	checkForCorrectColors(req.body);
 	res.render('mastermind', {title: 'Mastermind', guesses: guesses});
+});
+
+app.get('/startover', function(req, res) {
+  guesses = [];
+  res.render('mastermind', {title: 'Mastermind', guesses: guesses});
 });
 
 var checkForCorrectColors = function(guess) {

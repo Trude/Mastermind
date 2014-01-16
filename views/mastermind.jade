@@ -9,6 +9,8 @@ block content
 			div.col-md-1.glyphicon.glyphicon-certificate
 			div.col-md-1.glyphicon.glyphicon-certificate
 			div.col-md-1.glyphicon.glyphicon-certificate
+			div.col-md-1 S
+			div.col-md-1 H
 	div.previousGuesses
 		each guess in guesses
 			div.row
@@ -19,9 +21,13 @@ block content
 				div.col-md-1=guess.correct
 				div.col-md-1=guess.almostCorrect
 	div.currentGuess
-		form.form-inline(action='/', method='post')
-			- for (var x = 0; x < 4; x++)
-				select.form-control(name='color' + x)
-					each color in  ['Red', 'Blue', 'Green', 'Yellow']
-						option #{color}
-			input(type='submit', value='Gjett!')
+		- if (guesses.length > 0 && guesses[guesses.length-1]['correct'] == 4)
+			div Gratulerer, du klarte det! :)
+			a.btn.btn-primary(href="/startover") Spill på nytt!
+		- else
+			form.form-inline(action='/guess', method='post')
+					- for (var x = 0; x < 4; x++)
+						select.form-control(name='color' + x)
+							each color in  ['Red', 'Blue', 'Green', 'Yellow']
+								option #{color}
+					input.btn.btn-info(type='submit', value='Gjett!')
