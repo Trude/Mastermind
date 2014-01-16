@@ -1,7 +1,6 @@
 var express = require('express');
 var path = require('path');
 
-
 // lag instans
 var app = express();
 
@@ -20,11 +19,29 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
+	checkForCorrectColors(req.body);
 	res.render('mastermind', {title: 'Mastermind', guesses: guesses});
 });
 
 var checkForCorrectColors = function(guess) {
+	var correct = findNumberOfCorrectGuesses(guess);
+	var almostCorrect = findNumberOfAlmostCorrectGuesses(guess);
+	guesses.push({guess: guess, correct: correct, almostCorrect: almostCorrect});
+}
 
+var findNumberOfCorrectGuesses = function(guess) {
+	var correct = 0;
+	for(var color in guess) {
+		if(fasit[color] == guess[color]){
+			correct++;
+		}
+	}
+	return correct;
+}
+
+var findNumberOfAlmostCorrectGuesses = function(guess) {
+	var almostCorrect = 0;
+	return almostCorrect;
 }
 
 app.listen(3000);
