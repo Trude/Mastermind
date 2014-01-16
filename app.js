@@ -23,16 +23,24 @@ app.post('/', function(req, res) {
 });
 
 var checkForCorrectColors = function(guess) {
+	var correct = findNumberOfCorrectGuesses(guess);
+	var almostCorrect = findNumberOfAlmostCorrectGuesses(guess);
+	guesses.push({guess: guess, correct: correct, almostCorrect: almostCorrect});
+}
+
+var findNumberOfCorrectGuesses = function(guess) {
 	var correct = 0;
-	var almostCorrect = 0;
-	for(var colorGuessed in guess) {
-		for(var colorCorrect in fasit) {
-			if(colorGuessed==colorCorrect) {
-				almostCorrect++;
-			}
+	for(var color in guess) {
+		if(fasit[color] == guess[color]){
+			correct++;
 		}
 	}
-	guesses.push({guess: guess, correct: correct, almostCorrect: almostCorrect});
+	return correct;
+}
+
+var findNumberOfAlmostCorrectGuesses = function(guess) {
+	var almostCorrect = 0;
+	return almostCorrect;
 }
 
 app.listen(3000);
