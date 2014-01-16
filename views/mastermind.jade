@@ -5,9 +5,18 @@ block content
 	div.solution
 		p * * * *
 	div.previousGuesses
+		ul
+			each guess in guesses
+				li=guess.guess.color0
+				li=guess.guess.color1
+				li=guess.guess.color2
+				li=guess.guess.color3
+				li=guess.correct
+				li=guess.almostCorrect
 	div.currentGuess
-		form.guess
+		form(action='/', method='post')
 			- for (var x = 0; x < 4; x++)
-				select
+				select(name='color' + x)
 					each color in  ['Red', 'Yellow', 'Green', 'Yellow']
 						option #{color}
+			input(type='submit', value='Gjett!')
