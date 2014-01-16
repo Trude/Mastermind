@@ -1,12 +1,17 @@
 extends layout
 
 block content
-	h1 Mastermind
+	div.page-header
+		h1 Mastermind
 	div.solution
-		p * * * *
-	div.previousGuesses
 		div.row
-			each guess in guesses
+			div.col-md-1.glyphicon.glyphicon-certificate
+			div.col-md-1.glyphicon.glyphicon-certificate
+			div.col-md-1.glyphicon.glyphicon-certificate
+			div.col-md-1.glyphicon.glyphicon-certificate
+	div.previousGuesses
+		each guess in guesses
+			div.row
 				div.col-md-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color0}")
 				div.col-md-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color1}")
 				div.col-md-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color2}")
@@ -14,9 +19,9 @@ block content
 				div.col-md-1=guess.correct
 				div.col-md-1=guess.almostCorrect
 	div.currentGuess
-		form(action='/', method='post')
+		form.form-inline(action='/', method='post')
 			- for (var x = 0; x < 4; x++)
-				select(name='color' + x)
+				select.form-control(name='color' + x)
 					each color in  ['Red', 'Blue', 'Green', 'Yellow']
 						option #{color}
 			input(type='submit', value='Gjett!')
