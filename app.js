@@ -15,10 +15,12 @@ app.use('/public', express.static(__dirname + '/public'));
 // [{guess: {color0: 'Red', color1: 'Green', color2: 'Green', color3: 'Yellow'}, correct:1, almostCorrect:1}];
 var guesses = [];
 var availableColors = ['Red', 'Blue', 'Green', 'Yellow']
-var fasit = {color0: 'Red', color1: 'Red', color2: 'Blue', color3: 'Green'};
+var fasit = {};
 
 app.get('/', function(req, res) {
-	res.render('mastermind', {title: 'Mastermind', guesses: guesses});
+	guesses = [];
+  pickRandomSolution();
+  res.render('mastermind', {title: 'Mastermind', guesses: guesses});
 });
 
 app.post('/guess', function(req, res) {
