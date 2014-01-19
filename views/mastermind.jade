@@ -5,29 +5,30 @@ block content
 		h1 Mastermind
 	div.solution
 		div.row
-			div.col-md-1.glyphicon.glyphicon-certificate
-			div.col-md-1.glyphicon.glyphicon-certificate
-			div.col-md-1.glyphicon.glyphicon-certificate
-			div.col-md-1.glyphicon.glyphicon-certificate
-			div.col-md-1 S
-			div.col-md-1 H
+			div.col-xs-1.glyphicon.glyphicon-certificate  
+			div.col-xs-1.glyphicon.glyphicon-certificate  
+			div.col-xs-1.glyphicon.glyphicon-certificate  
+			div.col-xs-1.glyphicon.glyphicon-certificate  
 	div.previousGuesses
 		each guess in guesses
 			div.row
-				div.col-md-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color0}")
-				div.col-md-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color1}")
-				div.col-md-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color2}")
-				div.col-md-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color3}")
-				div.col-md-1=guess.correct
-				div.col-md-1=guess.almostCorrect
+				div.col-xs-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color0}")  
+				div.col-xs-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color1}")  
+				div.col-xs-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color2}")  
+				div.col-xs-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color3}")   
+				div.col-xs-2.correct
+					- for (var x = 0; x < guess.correct; x++)
+						span.glyphicon.glyphicon-certificate.Black  
+					- for (var x = 0; x < guess.almostCorrect; x++)
+						span.glyphicon.glyphicon-certificate.White  
 	div.currentGuess
 		- if (guesses.length > 0 && guesses[guesses.length-1]['correct'] == 4)
 			div Gratulerer, du klarte det! :)
 			a.btn.btn-primary(href="/startover") Spill på nytt!
 		- else
-			form.form-inline(action='/guess', method='post')
+			form.row.form-inline(action='/guess', method='post')
 					- for (var x = 0; x < 4; x++)
-						select.form-control(name='color' + x)
+						select.col-xs-1.form-control(name='color' + x)
 							each color in  ['Red', 'Blue', 'Green', 'Yellow']
 								option #{color}
-					input.btn.btn-info(type='submit', value='Gjett!')
+					input.col-xs-1.btn.btn-info(type='submit', value='Gjett!')

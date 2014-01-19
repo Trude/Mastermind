@@ -21,3 +21,11 @@
 .Black{
   color: black;
 }
+
+.White{
+  color: white;
+}
+
+.correct{
+  font-size: 60%;
+}
