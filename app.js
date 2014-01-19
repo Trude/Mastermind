@@ -33,11 +33,10 @@ app.get('/startover', function(req, res) {
 });
 
 var pickRandomSolution = function(){
-	var item1 = availableColors[Math.floor(Math.random()*availableColors.length)];
-	var item2 = availableColors[Math.floor(Math.random()*availableColors.length)];
-	var item3 = availableColors[Math.floor(Math.random()*availableColors.length)];
-	var item4 = availableColors[Math.floor(Math.random()*availableColors.length)];
-	fasit = {color0: item1, color1: item2, color2: item3, color3: item4};
+	fasit['color0'] = availableColors[Math.floor(Math.random()*availableColors.length)];
+	fasit['color1'] = availableColors[Math.floor(Math.random()*availableColors.length)];
+	fasit['color2'] = availableColors[Math.floor(Math.random()*availableColors.length)];
+	fasit['color3'] = availableColors[Math.floor(Math.random()*availableColors.length)];
 }
 
 var checkForCorrectColors = function(guess) {
