@@ -1,21 +1,17 @@
 .Red{
-  color: red;
+  color: #FA7070;
 }
 
 .Blue{
-  color: blue;
+  color: #7095FA;
 }
 
 .Yellow{
-  color: yellow;
+  color: #FAFA70;
 }
 
 .Green{
-  color: green;
-}
-
-.Brown{
-  color: brown;
+  color: #70FAA3;
 }
 
 .Black{
@@ -28,4 +24,14 @@
 
 .correct{
   font-size: 60%;
+}
+
+.mastermind{
+  padding: 20px;
+  width: 500px;
+  display: inline-block;
+}
+
+.previousGuesses{
+  padding: 20px 0;
 }
