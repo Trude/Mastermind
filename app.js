@@ -14,6 +14,7 @@ app.use('/public', express.static(__dirname + '/public'));
 // guesses could look like this: 
 // [{guess: {color0: 'Red', color1: 'Green', color2: 'Green', color3: 'Yellow'}, correct:1, almostCorrect:1}];
 var guesses = [];
+var availableColors = ['Red', 'Blue', 'Green', 'Yellow']
 var fasit = {color0: 'Red', color1: 'Red', color2: 'Blue', color3: 'Green'};
 
 app.get('/', function(req, res) {
@@ -27,8 +28,17 @@ app.post('/guess', function(req, res) {
 
 app.get('/startover', function(req, res) {
   guesses = [];
+  pickRandomSolution();
   res.render('mastermind', {title: 'Mastermind', guesses: guesses});
 });
+
+var pickRandomSolution = function(){
+	var item1 = availableColors[Math.floor(Math.random()*availableColors.length)];
+	var item2 = availableColors[Math.floor(Math.random()*availableColors.length)];
+	var item3 = availableColors[Math.floor(Math.random()*availableColors.length)];
+	var item4 = availableColors[Math.floor(Math.random()*availableColors.length)];
+	fasit = {color0: item1, color1: item2, color2: item3, color3: item4};
+}
 
 var checkForCorrectColors = function(guess) {
 	var correct = findNumberOfCorrectGuesses(guess);
